@@ -1,6 +1,6 @@
 # JMeter Extended Service
 
-The *jmeter-extended-service* is an alternative to the JMeter Keptn core component which comes with a full Keptn Installation.
+The *jmeter-extended-service* is an **alternative to the JMeter Keptn core** component *jmeter-service* which comes with a full Keptn Installation.
 *jmeter-extended-service* provides extended capabilities around custom workload definitions and executions.
 The goal is to use this Sandbox project to provide finalize and proof these new capabilities to be valuable to the Keptn community and at a later point merge it into the JMeter Keptn Core project!
 
@@ -8,10 +8,6 @@ The *jmeter-extended-service* listens to Keptn events of type:
 - `sh.keptn.events.deployment-finished`
 
 In case the tests succeeed, this service sends a `sh.keptn.events.test-finished` event with `pass` as `result`. In case the tests do not succeed (e.g., the error rate is too high), this service sends an `sh.keptn.events.test-finished` event with `fail` as `result`.
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/grabnerandi/jmeter-extended-service)
-[![Build Status](https://travis-ci.org/grabnerandi/generic-executor-service.svg?branch=master)](https://travis-ci.org/grabnerandi/jmeter-extended-service)
-[![Go Report Card](https://goreportcard.com/badge/github.com/grabnerandi/generic-executor-service)](https://goreportcard.com/report/github.com/grabnerandi/jmeter-extended-service)
 
 ## Compatibility Matrix
 
