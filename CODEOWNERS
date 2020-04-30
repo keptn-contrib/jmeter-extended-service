@@ -15,3 +15,5 @@
 #
 
 * @grabnerandi
+docker/* @christian-kreuzberger-dtx
+.travis.yml @christian-kreuzberger-dtx
