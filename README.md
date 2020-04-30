@@ -1,4 +1,6 @@
 # JMeter Extended Service
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-contrib/jmeter-extended-service)
+[![Go Report Card](https://goreportcard.com/badge/github.com/keptn-contrib/jmeter-extended-service)](https://goreportcard.com/report/github.com/keptn-contrib/jmeter-extended-service)
 
 The *jmeter-extended-service* is an **alternative to the JMeter Keptn core** component *jmeter-service* which comes with a full Keptn Installation.
 *jmeter-extended-service* provides extended capabilities around custom workload definitions and executions.
@@ -11,9 +13,10 @@ In case the tests succeeed, this service sends a `sh.keptn.events.test-finished`
 
 ## Compatibility Matrix
 
-| Keptn Version    | [JMeter Extended Service for Keptn](https://hub.docker.com/r/grabnerandi/jmeter-extended-service/tags) |
+| Keptn Version    | [JMeter Extended Service for Keptn](https://hub.docker.com/r/keptncontrib/jmeter-extended-service/tags) |
 |:----------------:|:----------------------------------------:|
-|       0.6.1      | grabnerandi/jmeter-extended-service:0.1.0 |
+|       0.6.1      | keptncontrib/jmeter-extended-service:0.1.0 |
+|       0.6.2      | not released yet                           |
 
 ## Installation
 
@@ -23,13 +26,18 @@ The *jmeter-extended-service* can be installed on a Keptn Quality Gate only inst
 
 To replace the existing jmeter-service with *jmeter-extened-service* simply replace the image in the jmeter-service deployment like this
 ```console
-kubectl -n keptn set image deployment/jmeter-service jmeter-service=grabnerandi/jmeter-extended-service:0.1.0 --record
+kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptncontrib/jmeter-extended-service:0.1.0 --record
 ```
 
 If you want to revert back to the core jmeter-service do this
-```console
-kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptn/jmeter-service:latest --record
-```
+* Keptn Version 0.6.1
+  ```console
+  kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptn/jmeter-service:0.6.1 --record
+  ```
+* Keptn Version 0.6.2
+  ```console
+  kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptn/jmeter-service:0.6.2 --record
+  ```
 
 ### For Quality Gate Only Installs: Deploy jmeter-extended-service
 
