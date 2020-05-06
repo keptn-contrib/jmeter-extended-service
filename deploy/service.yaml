@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: jmeter-service
-        image: keptncontrib/jmeter-extended-service:latest
+        image: keptncontrib/jmeter-extended-service:0.1.0
         ports:
         - containerPort: 8080
         env:
@@ -41,7 +41,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jmeter-extended-service-deployment-distributor
+  name: jmeter-service-deployment-distributor
   namespace: keptn
 spec:
   selector:
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
       - name: distributor
-        image: keptn/distributor:latest
+        image: keptn/distributor:0.6.1
         ports:
         - containerPort: 8080
         resources:
