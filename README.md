@@ -15,7 +15,7 @@ In case the tests succeeed, this service sends a `sh.keptn.events.test-finished`
 
 | Keptn Version    | [JMeter Extended Service for Keptn](https://hub.docker.com/r/keptncontrib/jmeter-extended-service/tags) |
 |:----------------:|:----------------------------------------:|
-|       0.6.1      | keptncontrib/jmeter-extended-service:0.1.0 |
+|       0.6.1      | keptncontrib/jmeter-extended-service:0.1.0,keptncontrib/jmeter-extended-service:0.2.0 |
 |       0.6.2      | not released yet                           |
 
 ## Installation
