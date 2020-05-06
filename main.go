@@ -279,7 +279,7 @@ func _main(args []string, env envConfig) int {
 		log.Fatalf("failed to create client, %v", err)
 	}
 
-	log.Println("Started jmeter-service on ", env.Path, env.Port)
+	log.Println("Started jmeter-extended-service on ", env.Path, env.Port)
 
 	log.Fatalf("failed to start receiver: %s", c.StartReceiver(ctx, gotEvent))
 
