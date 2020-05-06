@@ -40,12 +40,25 @@ func executeJMeter(testInfo *TestInfo, workload *Workload, resultsDir string, ur
 	os.MkdirAll(resultsDir, 0644)
 
 	resourceHandler := configutils.NewResourceHandler(getConfigurationServiceURL())
-	testScriptResource, err := resourceHandler.GetServiceResource(testInfo.Project, testInfo.Stage, testInfo.Service, workload.Script)
 
-	// if no test file has been found, we assume that no tests should be executed
+	// =====================================
+	// implementing - https://github.com/keptn-contrib/jmeter-extended-service/issues/3
+	// trying to load script from service, then stage and last from project
+	// if test script cannot be found we skip execution
+	testScriptResource, err := resourceHandler.GetServiceResource(testInfo.Project, testInfo.Stage, testInfo.Service, workload.Script)
 	if err != nil || testScriptResource == nil || testScriptResource.ResourceContent == "" {
-		logger.Debug("Skipping test execution because no tests have been defined.")
-		return true, nil
+		// if not found on serivce level - lets try it on stage level
+		testScriptResource, err = resourceHandler.GetStageResource(testInfo.Project, testInfo.Stage, workload.Script)
+
+		if err != nil || testScriptResource == nil || testScriptResource.ResourceContent == "" {
+			// if not found on stage level we try project level
+			testScriptResource, err = resourceHandler.GetProjectResource(testInfo.Project, workload.Script)
+
+			if err != nil || testScriptResource == nil || testScriptResource.ResourceContent == "" {
+				logger.Debug("Skipping test execution because " + workload.Script + " not found on service, stage or project level.")
+				return true, nil
+			}
+		}
 	}
 
 	os.RemoveAll(workload.Script)
@@ -79,6 +92,7 @@ func executeJMeter(testInfo *TestInfo, workload *Workload, resultsDir string, ur
 		// "-e", "-o", resultsDir,
 		"-l", resultsDir + "_result.tlf",
 		"-JPROTOCOL=" + url.Scheme,
+		"-JSERVER_PROTOCOL=" + url.Scheme,
 		"-JSERVER_URL=" + url.Hostname(),
 		"-JDT_LTN=" + LTN,
 		"-JVUCount=" + strconv.Itoa(workload.VUser),
