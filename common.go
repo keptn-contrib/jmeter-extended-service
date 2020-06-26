@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/ghodss/yaml"
-	"github.com/keptn/go-utils/pkg/configuration-service/utils"
-	keptnutils "github.com/keptn/go-utils/pkg/utils"
+	keptnapi "github.com/keptn/go-utils/pkg/api/utils"
+	keptn "github.com/keptn/go-utils/pkg/lib"
 )
 
 var runlocal = (os.Getenv("env") == "runlocal")
@@ -40,7 +40,7 @@ func getWorkload(jmeterconf *JMeterConf, teststrategy string) (*Workload, error)
 //
 // Loads jmeter.conf for the current service
 //
-func getJMeterConf(project string, stage string, service string, logger *keptnutils.Logger) (*JMeterConf, error) {
+func getJMeterConf(project string, stage string, service string, logger *keptn.Logger) (*JMeterConf, error) {
 	// if we run in a runlocal mode we are just getting the file from the local disk
 	var fileContent []byte
 	var err error
@@ -52,7 +52,7 @@ func getJMeterConf(project string, stage string, service string, logger *keptnut
 			return nil, errors.New(logMessage)
 		}
 	} else {
-		resourceHandler := utils.NewResourceHandler("configuration-service:8080")
+		resourceHandler := keptnapi.NewResourceHandler("configuration-service:8080")
 		keptnResourceContent, err := resourceHandler.GetServiceResource(project, stage, service, JMeterConfFilename)
 		if err != nil {
 			logMessage := fmt.Sprintf("No %s file found for service %s in stage %s in project %s", JMeterConfFilename, service, stage, project)
