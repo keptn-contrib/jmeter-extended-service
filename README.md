@@ -1,3 +1,5 @@
+:warning: **This repo is archived since it has been moved to: https://github.com/keptn/keptn/tree/master/jmeter-service**
+
 # JMeter Extended Service
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-contrib/jmeter-extended-service)
 [![Go Report Card](https://goreportcard.com/badge/github.com/keptn-contrib/jmeter-extended-service)](https://goreportcard.com/report/github.com/keptn-contrib/jmeter-extended-service)
